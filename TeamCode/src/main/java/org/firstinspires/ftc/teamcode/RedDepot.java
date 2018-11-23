@@ -8,8 +8,10 @@ package org.firstinspires.ftc.teamcode;
 public class RedDepot extends Autonomous {
     @Override
     public void runPath() {
-        move (50, -0.7);
-        pivot(90,0.7);
-        move(100, 0.7);
+        move (5, 0.7);
+        //moveMarkerStick(50);//knockem
+        pivot(135,0.7);
+        move(30, 0.7);
+        //moveMarkerStick(-50);//close
     }
 }
