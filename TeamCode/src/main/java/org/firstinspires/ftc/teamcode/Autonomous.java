@@ -27,6 +27,17 @@ public abstract class Autonomous extends LinearOpMode {
 
         waitForStart();
 
+
+
+
+
+
+
+
+
+
+
+
         runPath();
     }
 
@@ -205,6 +216,9 @@ public abstract class Autonomous extends LinearOpMode {
                     }
                     robot.slideMotor.setPower(0);
                 }
+    void closed (int time, int position){
+        //gives power to motors
+        robot.clawLeft.setPosition(0);
+        robot.clawRight.setPosition(0);
 
-
-}
+}}
