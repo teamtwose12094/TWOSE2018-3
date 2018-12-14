@@ -73,6 +73,10 @@ public class TeleopTank extends LinearOpMode {
     final double OPEN_RIGHT = 1;
     final double CLOSE_RIGHT = 0.49;
     final double RELIC_CLOSE_RIGHT = 0.3;
+    final double LEFT_HOOK_CLOSE = 0.25;
+    final double RIGHT_HOOK_CLOSE = 0.75;
+    final double LEFT_HOOK_OPEN = 1.0;
+    final double RIGHT_HOOK_OPEN = 0.0;
     public boolean relicMode = false;
     //final double    CLAW_SPEED      = 0.01 ;                            // sets rate to move servo
     //final double    ARM_SPEED       = 0.01 ;                            // sets rate to move servo
@@ -104,6 +108,17 @@ public class TeleopTank extends LinearOpMode {
             robot.rightMotor.setPower(-
                     right);
 
+            if (gamepad2.x){
+                robot.hookLeft.setPosition(LEFT_HOOK_CLOSE);
+                robot.hookRight.setPosition(RIGHT_HOOK_CLOSE);
+            }
+            else if (gamepad2.b){
+                robot.hookLeft.setPosition(LEFT_HOOK_OPEN);
+                robot.hookRight.setPosition(RIGHT_HOOK_OPEN);
+            }
+
+
+
             // Use gamepad Y & A raise and lower the arm
             if ((gamepad1.a)|| (gamepad2.a)) {
                 robot.armMotor.setPower(-0.3);
@@ -124,9 +139,9 @@ public class TeleopTank extends LinearOpMode {
             } else {
                 robot.slideMotor.setPower(0);
             }
-            if ((gamepad1.b) || (gamepad2.b)) {
-                    robot.clawLeft.setPosition(OPEN_LEFT);
-                    robot.clawRight.setPosition(OPEN_RIGHT);
+            /*if ((gamepad1.b) || (gamepad2.b)) {
+                    //robot.clawLeft.setPosition(OPEN_LEFT);
+                    //robot.clawRight.setPosition(OPEN_RIGHT);
 
             } else if ((gamepad1.x) || (gamepad2.x)) {
                 if (relicMode == false){
@@ -135,6 +150,7 @@ public class TeleopTank extends LinearOpMode {
                 else{
                     robot.clawLeft.setPosition(RELIC_CLOSE_LEFT);
                     robot.clawRight.setPosition(RELIC_CLOSE_RIGHT);}
+            */
             }
             if ((gamepad1.left_bumper) || (gamepad2.left_bumper)) {
                 if (relicMode == false){
@@ -154,8 +170,6 @@ public class TeleopTank extends LinearOpMode {
 
 
         }
-    }
-
     }
 
 
