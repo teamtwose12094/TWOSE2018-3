@@ -4,7 +4,7 @@ package org.firstinspires.ftc.teamcode;
  * Created by student on 10/26/2017.
  */
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "MissionUnloadRedRight", group = "Autonomous")
+/*@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "MissionUnloadRedRight", group = "Autonomous")
 public class MissionUnloadRedRight extends Autonomous {
     @Override
     public void runPath() {
@@ -31,5 +31,5 @@ public class MissionUnloadRedRight extends Autonomous {
         sleep(10000);
 
 }}
-
+*/
 

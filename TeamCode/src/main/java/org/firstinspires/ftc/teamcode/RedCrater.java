@@ -6,8 +6,12 @@ package org.firstinspires.ftc.teamcode;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "RedCrater", group = "Autonomous")
 public class RedCrater extends Autonomous {
+
     @Override
     public void runPath() {
+
+
+
         move (27, 0.9);
         // closed(2, 0);
         // moveArm (1, 5);
@@ -22,4 +26,5 @@ public class RedCrater extends Autonomous {
 
 
     }
+
 }

@@ -8,6 +8,7 @@ package org.firstinspires.ftc.teamcode;
 public class MissionCornerRed extends Autonomous {
     @Override
     public void runPath() {
+
         robot.leftMotor.setPower(-0.4);
         robot.rightMotor.setPower(-0.4);
         for (int i=0; i <= 3000; i++){

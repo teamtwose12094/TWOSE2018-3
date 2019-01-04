@@ -8,7 +8,25 @@ package org.firstinspires.ftc.teamcode;
 public class Nothing extends Autonomous {
     @Override
     public void runPath() {
-        sleep(100000);
+
+     boolean flag = false;
+
+
+    while (flag == false) {
+        if (getOrientation() == "left") {
+            pivot(45, 0.7);
+            flag = true;
+        } else if (getOrientation() == "center") {
+            move(5, 0.7);
+            flag = true;
+        } else if (getOrientation() == "right") {
+            pivot(45, -0.7);
+            flag = true;
+        }
+    }
+
+
+        //sleep(100000);
 
     }
 }
