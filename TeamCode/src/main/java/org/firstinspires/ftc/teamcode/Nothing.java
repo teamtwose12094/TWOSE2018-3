@@ -14,13 +14,15 @@ public class Nothing extends Autonomous {
 
     while (flag == false) {
         if (getOrientation() == "left") {
-            pivot(45, 0.7);
+            pivot(-45, 0.7);
+            move(5, 0.7);
             flag = true;
         } else if (getOrientation() == "center") {
             move(5, 0.7);
             flag = true;
         } else if (getOrientation() == "right") {
-            pivot(45, -0.7);
+            pivot(45, 0.7);
+            move(5, 0.7);
             flag = true;
         }
     }

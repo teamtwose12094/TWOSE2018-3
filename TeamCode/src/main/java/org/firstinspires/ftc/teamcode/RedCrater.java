@@ -9,7 +9,14 @@ public class RedCrater extends Autonomous {
 
     @Override
     public void runPath() {
-
+        if(getOrientation2()== "Left"){
+            pivot(15, 0.7);
+            move(5, 0.7);
+        }
+        else if(getOrientation2()== "Center") {
+            move(5, 0.7);
+        }
+       // else(getOrientation2()==);
 
 
         move (27, 0.9);

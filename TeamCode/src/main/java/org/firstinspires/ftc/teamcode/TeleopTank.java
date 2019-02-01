@@ -62,7 +62,7 @@ public class TeleopTank extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareK9bot robot = new HardwareK9bot();              // Use a K9's hardware
-    double colourStickPosition = robot.COLOURSTICK_HOME;
+ //   double colourStickPosition = robot.COLOURSTICK_HOME;
     //double          armPosition     = robot.ARM_HOME;                   // Servo safe position
     //double          clawPosition    = robot.CLAW_HOME;                  // Servo safe position
     final double COLOURSTICK_UP = 1;
@@ -159,13 +159,13 @@ public class TeleopTank extends LinearOpMode {
                     relicMode = false;}
             }
             if ((gamepad1.dpad_left) || (gamepad2.dpad_left)) {
-                robot.colourStick.setPosition(COLOURSTICK_UP);
+    //            robot.colourStick.setPosition(COLOURSTICK_UP);
                 //colourStickPosition = COLOURSTICK_DOWN;
                 //clawPosition += CLAW_SPEED;
             }
 
             if ((gamepad1.dpad_right) || (gamepad2.dpad_right)) {
-                robot.colourStick.setPosition(COLOURSTICK_DOWN);
+  //              robot.colourStick.setPosition(COLOURSTICK_DOWN);
             }
 
 

@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.HardwareK9bot.COLOURSTICK_HOME;
+//import static org.firstinspires.ftc.teamcode.HardwareK9bot.COLOURSTICK_HOME;
 
 /**
  * Created by student on 11/24/2016.
@@ -49,6 +49,7 @@ public abstract class Autonomous extends LinearOpMode {
     abstract protected void runPath();
 
     protected void move(int distance, double power) {
+
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -63,9 +64,10 @@ public abstract class Autonomous extends LinearOpMode {
         robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //keep going until distance is met
-        while( (robot.leftMotor.getCurrentPosition() < distance * TICKS_PER_INCH) && opModeIsActive() ){
+        while( (Math.abs(robot.rightMotor.getCurrentPosition()) < distance * TICKS_PER_INCH) && opModeIsActive() ){
 
-            telemetry.addData("thing", robot.leftMotor.getCurrentPosition());
+            telemetry.addData("Position: ", robot.rightMotor.getCurrentPosition());
+            telemetry.addData("Goal", distance * TICKS_PER_INCH);
             telemetry.update();
             idle();
         }
@@ -74,7 +76,7 @@ public abstract class Autonomous extends LinearOpMode {
         robot.rightMotor.setPower(0);
     }
 
-    protected void dmove(double distance, double power) {
+    protected void move(double distance, double power) {
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -89,9 +91,9 @@ public abstract class Autonomous extends LinearOpMode {
         robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //keep going until distance is met
-        while( (robot.leftMotor.getCurrentPosition() < distance * TICKS_PER_INCH) && opModeIsActive() ){
+        while( (Math.abs(robot.leftMotor.getCurrentPosition()) < distance * TICKS_PER_INCH) && opModeIsActive() ){
 
-            telemetry.addData("thing", robot.leftMotor.getCurrentPosition());
+            telemetry.addData("position", robot.leftMotor.getCurrentPosition());
             telemetry.update();
             idle();
         }
@@ -153,9 +155,9 @@ public abstract class Autonomous extends LinearOpMode {
 
     }
 
-    public void moveColorSensor (int position){
-    robot.colourStick.setPosition(position);
-    }
+//    public void moveColorSensor (int position){
+//        robot.colourStick.setPosition(position);
+//    }
 
                     void moveArm (int power, int time){
                         robot.armMotor.setPower(power);
@@ -185,13 +187,12 @@ public abstract class Autonomous extends LinearOpMode {
                  if (initFlag == false){
                      initVuforia();
                      initFlag = true;
-                 }
+                     if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
+                         initTfod();
+                     } else {
+                         telemetry.addData("Sorry!", "This device is not compatible with TFOD");
+                     }
 
-
-                 if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
-                     initTfod();
-                 } else {
-                     telemetry.addData("Sorry!", "This device is not compatible with TFOD");
                  }
 
 //                 /** Wait for the game to begin */
@@ -212,7 +213,9 @@ public abstract class Autonomous extends LinearOpMode {
                              List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                              if (updatedRecognitions != null) {
                                  telemetry.addData("# Object Detected", updatedRecognitions.size());
-                                 if (updatedRecognitions.size() == 3) {
+                                 if ((updatedRecognitions.size() == 1) && (updatedRecognitions.size() == 2)) {
+                                     return "insufficient";
+                                 } else if (updatedRecognitions.size() == 3) {
                                      int goldMineralX = -1;
                                      int silverMineral1X = -1;
                                      int silverMineral2X = -1;
@@ -280,7 +283,110 @@ public abstract class Autonomous extends LinearOpMode {
                  tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
                  tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
              }
+
+    public String getOrientation2 (){
+
+        // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
+        // first.
+        if (initFlag == false){
+            initVuforia();
+            initFlag = true;
+            if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
+                initTfod();
+            } else {
+                telemetry.addData("Sorry!", "This device is not compatible with TFOD");
+            }
+
+        }
+
+//                 /** Wait for the game to begin */
+//                 telemetry.addData(">", "Press Play to start tracking");
+//                 telemetry.update();
+//                 waitForStart();
+
+        if (opModeIsActive()) {
+            /** Activate Tensor Flow Object Detection. */
+            if (tfod != null) {
+                tfod.activate();
+            }
+
+            while (opModeIsActive()) {
+                if (tfod != null) {
+                    // getUpdatedRecognitions() will return null if no new information is available since
+                    // the last time that call was made.
+                    List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                    if (updatedRecognitions != null) {
+                        telemetry.addData("# Object Detected", updatedRecognitions.size());
+                        if ((updatedRecognitions.size() == 1) && (updatedRecognitions.size() == 2)) {
+                            return "insufficient";
+                        } else if (updatedRecognitions.size() == 3) {
+                            int goldMineralX = -1;
+                            int silverMineral2X = -1;
+                            for (Recognition recognition : updatedRecognitions) {
+                                if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                                    goldMineralX = (int) recognition.getLeft();
+                                } else {
+                                    silverMineral2X = (int) recognition.getLeft();
+                                }
+                            }
+                            if (goldMineralX != -1 && silverMineral2X != -1) {
+                                if (goldMineralX < silverMineral2X) {
+                                    telemetry.addData("Gold Mineral Position", "Left");
+                                    return("left");
+                                } else if (goldMineralX > silverMineral2X) {
+                                    telemetry.addData("Gold Mineral Position", "Center");
+                                    return("center");
+                                } else {
+                                    telemetry.addData("Gold Mineral Position", "Right");
+                                    return("right");
+                                }
+                            }
+                        }
+                        telemetry.update();
+                    }
+                }
+            }
+        }
+
+        if (tfod != null) {
+            tfod.shutdown();
+        }
+
+        return("none");
+
+    }
+
+    /**
+     * Initialize the Vuforia localization engine.
+     */
+    private void initVuforia2() {
+        /*
+         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+         */
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+
+        //  Instantiate the Vuforia engine
+        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
+    }
+
+    /**
+     * Initialize the Tensor Flow Object Detection engine.
+     */
+    private void initTfod2() {
+        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
          }
+
+
 
 
 

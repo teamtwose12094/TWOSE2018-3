@@ -7,12 +7,16 @@ package org.firstinspires.ftc.teamcode;
 public class RedDepot extends Autonomous {
     @Override
     public void runPath() {
-        dmove(0.5, -0.7);
-        move (30, 0.7);
-        //moveMarkerStick(50);//knockem
-        move (-5, -0.7);
-        pivot(95,-0.7);
-        move(65, 0.7);
-        //moveMarkerStick(-50);//close
+
+
+        move (10, -0.9);
+        move (5, 0.9);
+//        move (1, -0.7); //???
+//        move (30, 0.7);
+//        //moveMarkerStick(50);//knockem
+//        move (5, -0.7);
+//        pivot(95,-0.7);
+//        move (65, 0.7);
+//        //moveMarkerStick(-50);//close
     }
 }
