@@ -35,13 +35,13 @@ public class HardwareK9bot
     //public Servo lobster     = null;
     //public Servo clawLeft = null;
     //public Servo clawRight = null;
-   // public Servo colourStick = null;
+    //public Servo colourStick = null;
     public Servo hookLeft = null;
     public Servo hookRight = null;
     public final static double ARM_HOME = 0.2;
     public final static double LEFT_CLAW_HOME = 0;
     public final static double RIGHT_CLAW_HOME = 1;
-  //  public final static double COLOURSTICK_HOME = 0.9;
+    public final static double COLOURSTICK_HOME = 0.9;
 
     public final static double ARM_MIN_RANGE  = 0.20;
     public final static double ARM_MAX_RANGE  = 0.90;
@@ -85,7 +85,7 @@ public class HardwareK9bot
         // Define and initialize ALL installed servos.
         //claw = hwMap.servo.get("claw");
         //lobster = hwMap.servo.get("lobster");
-    //    colourStick = hwMap.servo.get("colourStick");
+        //colourStick = hwMap.servo.get("colourStick");
         //clawLeft = hwMap.servo.get("clawLeft");
         //clawRight = hwMap.servo.get("clawRight");
         hookLeft = hwMap.servo.get("hookLeft");
@@ -94,7 +94,7 @@ public class HardwareK9bot
 
         //clawLeft.setPosition(LEFT_CLAW_HOME);
         //clawRight.setPosition(RIGHT_CLAW_HOME);
-     //   colourStick.setPosition(COLOURSTICK_HOME);
+        //colourStick.setPosition(COLOURSTICK_HOME);
     }
 
     /***

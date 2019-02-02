@@ -82,8 +82,8 @@ public abstract class Autonomous extends LinearOpMode {
 
 
         //gives power to motors
-        robot.leftMotor.setPower(power);
-        robot.rightMotor.setPower(power);
+        robot.leftMotor.setPower(2*power);
+        robot.rightMotor.setPower(2*power);
 
         idle();
 
@@ -115,6 +115,7 @@ public abstract class Autonomous extends LinearOpMode {
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //gives power to motors
+        power = power * 2;
         robot.leftMotor.setPower(-Math.signum(angle) * power);
         robot.rightMotor.setPower(Math.signum(angle) * power);
 
@@ -317,30 +318,49 @@ public abstract class Autonomous extends LinearOpMode {
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
-                        if ((updatedRecognitions.size() == 0) && (updatedRecognitions.size() == 1)) {
+                        telemetry.update();
+                        sleep(1000);
+                        if (updatedRecognitions.size() == 1) {
                             return(0);
                         }
                         else if ((updatedRecognitions.size() == 2) && opModeIsActive()){
                             int goldMineralX = -1;
+                            int silverMineral1X = -1;
                             int silverMineral2X = -1;
                             for (Recognition recognition : updatedRecognitions) {
                                 if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
                                     goldMineralX = (int) recognition.getLeft();
+                                } else if (silverMineral1X == -1){
+                                    silverMineral1X = (int) recognition.getLeft();
                                 } else {
                                     silverMineral2X = (int) recognition.getLeft();
                                 }
+
                             }
-                            if (goldMineralX != -1 && silverMineral2X != -1) {
-                                if (goldMineralX < silverMineral2X) {
+                            if (goldMineralX != -1 && silverMineral1X != -1) {
+                                if (goldMineralX < silverMineral1X) {
                                     telemetry.addData("Gold Mineral Position", "Left");
+                                    telemetry.update();
+                                    sleep(1000);
                                     return(1); //left
-                                } else if (goldMineralX > silverMineral2X) {
+                                } else if (goldMineralX > silverMineral1X) {
                                     telemetry.addData("Gold Mineral Position", "Center");
+                                    telemetry.update();
+                                    sleep(1000);
                                     return(2); //center
-                                } else {
-                                    telemetry.addData("Gold Mineral Position", "Right");
-                                    return(3); //right
                                 }
+                            }
+                            else if ((silverMineral1X != -1) && (silverMineral2X != -1)){
+                                    telemetry.addData("Gold Mineral Position", "Right");
+                                    telemetry.update();
+                                    sleep(1000);
+                                    return(3); //right
+                            }
+                            else {
+                                telemetry.addData("Gold Mineral Position", "WTF");
+                                telemetry.update();
+                                sleep(1000);
+                                return(10);
                             }
                         }
                         else if ((updatedRecognitions.size() == 3) && opModeIsActive()) {
@@ -359,12 +379,19 @@ public abstract class Autonomous extends LinearOpMode {
                             if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
                                 if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                                     telemetry.addData("Gold Mineral Position", "Left");
+                                    telemetry.update();
+                                    sleep(1000);
                                     return(1); //left
                                 } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+
                                     telemetry.addData("Gold Mineral Position", "Right");
+                                    telemetry.update();
+                                    sleep(1000);
                                     return(3); //right
                                 } else {
                                     telemetry.addData("Gold Mineral Position", "Center");
+                                    telemetry.update();
+                                    sleep(1000);
                                     return(2); //center
                                 }
                             }
@@ -379,7 +406,9 @@ public abstract class Autonomous extends LinearOpMode {
             tfod.shutdown();
             //tfod.deactivate();
         }
-
+        telemetry.addData("Failure", "Failure");
+        telemetry.update();
+        sleep(1000);
         return(0);
 
     }

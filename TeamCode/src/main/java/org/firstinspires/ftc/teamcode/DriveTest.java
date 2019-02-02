@@ -9,7 +9,11 @@ public class DriveTest extends Autonomous {
     @Override
     public void runPath() {
 
-        move(5,0.2);
-        pivot(30, 0.2);
+        move(5,-0.9);
+        pivot(30,-0.9);
+        pivot(-30, -0.9);
+//        move(1, -0.5);
+//        move(1,  -0.75);
+//        move(1, -1.0);
     }
 }
