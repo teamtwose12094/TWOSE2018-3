@@ -16,16 +16,16 @@ public class Scan extends Autonomous {
 
         while (flag == false) {
 
-            if (getOrientation() == "left") {
+            if (getOrientation() == 1) {
                 pivot(45, 0.7);
                 flag = true;
-            } else if (getOrientation() == "center") {
+            } else if (getOrientation() == 2) {
                 move(5, 0.7);
                 flag = true;
-            } else if (getOrientation() == "right") {
+            } else if (getOrientation() == 3) {
                 pivot(45, -0.7);
                 flag = true;
-            } else if (getOrientation() == "insufficient"){
+            } else if (getOrientation() == 0){
 
                 if (counter < 30){
                     if (left == true) {
