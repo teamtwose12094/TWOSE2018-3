@@ -11,25 +11,29 @@ public class RedDepot extends Autonomous {
         int orientation = getOrientation();
 
         if (orientation == 1){
-            move (10, -0.7);
+            pivot(30, 0.7);
+            move (17, 0.7);
+            pivot(-90, 0.7);
+            move(40, 0.7);
 
         }
         else if (orientation == 2){
-            pivot(10, -0.7);
-            move (10, 0.7);
+            move (17, 0.7);
+            pivot(-120, 0.7);
+            move(40, 0.7);
         }
         else if (orientation == 3) {
-            pivot(20, -0.7);
-            move(10, 0.7);
-        }
-        else if (orientation == 10){
-            pivot(20, -0.7);
-            pivot (-20, 0.7);
+            pivot(30, -0.7);
+            move(17, 0.7);
+            pivot(90, 0.7);
+            move(40, 0.7);
         }
         else {
-            pivot (360, 0.7);
+            move(27,-0.7);
         }
-//        move(0.5, -0.7);
+        move(10, -0.7);
+        pivot(45,-0.7);
+        move(30,-0.7);
 //        move (30, 0.7);
 //        //moveMarkerStick(50);//knockem
 //        move (-5, -0.7);
