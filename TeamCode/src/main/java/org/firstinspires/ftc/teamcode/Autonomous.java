@@ -50,6 +50,8 @@ public abstract class Autonomous extends LinearOpMode {
 
     protected void move(int distance, double power) {
 
+        power = -power;
+
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 

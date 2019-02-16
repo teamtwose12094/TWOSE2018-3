@@ -1,34 +1,17 @@
-//package org.firstinspires.ftc.teamcode;
-//
-///**
-// * Created by student on 10/26/2017.
-// */
-//
-//@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "MissionUnloadRedLeft", group = "Autonomous")
-//public class MissionUnloadRedLeft extends Autonomous {
-//    @Override
-//    public void runPath() {
-//
-//        moveColorSensor(0);
-//        while (opModeIsActive()) {
-//            if (isRed() == true){
-//
-//                move(5, 0.7);
-//                move(-5, 0.7);
-//            }
-//            else if (isBlue() == true){
-//                move(-5, 0.7);
-//                move(5, 0.7);
-//            }
-//
-//        }
-//        moveColorSensor(1);
-//        move(24,0.7);
-//        pivot(90,0.7);
-//        moveArm(1, 1000);
-//        move(-7, 0.7);
-//
-//        sleep(10000);
-//}}
-//
-//
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":TeamCode" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android-gradle" name="Android-Gradle">
+      <configuration>
+        <option name="GRADLE_PROJECT_PATH" value=":TeamCode" />
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_

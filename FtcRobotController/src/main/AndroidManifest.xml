@@ -1,51 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.qualcomm.ftcrobotcontroller"
-          android:versionCode="31"
-          android:versionName="4.3">
+/**
+*Copyright 2015 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.gradle.jvm.plugins;
 
-  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+import org.gradle.api.Incubating;
+import org.gradle.api.Plugin;
+import org.gradle.api.Project;
+import org.gradle.jvm.test.JUnitTestSuiteBinarySpec;
+import org.gradle.jvm.test.JUnitTestSuiteSpec;
+import org.gradle.jvm.test.JvmTestSuiteSpec;
+import org.gradle.jvm.test.internal.DefaultJUnitTestSuiteBinarySpec;
+import org.gradle.jvm.test.internal.DefaultJUnitTestSuiteSpec;
+import org.gradle.jvm.test.internal.JvmTestSuiteBinarySpecInternal;
+import org.gradle.jvm.test.internal.JvmTestSuiteRules;
+import org.gradle.jvm.toolchain.JavaToolChainRegistry;
+import org.gradle.model.*;
+import org.gradle.platform.base.*;
+import org.gradle.platform.base.internal.DefaultModuleDependencySpec;
+import org.gradle.platform.base.internal.HasIntermediateOutputsComponentSpec;
+import org.gradle.platform.base.internal.PlatformResolvers;
+import org.gradle.testing.base.plugins.TestingModelBasePlugin;
 
-  <application
-    android:allowBackup="true"
-    android:largeHeap="true"
-    android:icon="@drawable/ic_launcher"
-    android:label="@string/app_name"
-    android:theme="@style/AppThemeRedRC" >
+/**
+ * This plugin adds support for execution of JUnit test suites to the Java software model.
+ *
+ * @since 2.11
+ */
+@Incubating
+public class JUnitTestSuitePlugin implements Plugin<Project> {
 
-    <!-- The main robot controller activity -->
-    <activity
-      android:name="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity"
-      android:screenOrientation="fullUser"
-      android:configChanges="orientation|screenSize"
-      android:label="@string/app_name"
-      android:launchMode="singleTask" >
-
-      <intent-filter>
-        <category android:name="android.intent.category.LAUNCHER" />
-        <action android:name="android.intent.action.MAIN" />
-      </intent-filter>
-
-      <intent-filter>
-        <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-      </intent-filter>
-
-      <meta-data
-        android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-        android:resource="@xml/device_filter" />
-
-      <meta-data
-          android:name="org.firstinspires.main.entry"
-          android:value="true"
-          />
-    </activity>
-
-    <!-- The robot controller service in which most of the robot functionality is managed -->
-    <service
-      android:name="com.qualcomm.ftccommon.FtcRobotControllerService"
-      android:enabled="true" />
-
-  </application>
-
-</manifest>
+    @Override
+    public void apply(P

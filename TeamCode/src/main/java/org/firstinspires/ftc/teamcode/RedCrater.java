@@ -12,7 +12,7 @@ public class RedCrater extends Autonomous {
 
         int orientation = getOrientation();
 
-        if (orientation == 1){
+       if (orientation == 1){
             pivot(-20, 0.7);
             move(20, 0.7);
             pivot(20, 0.7);
