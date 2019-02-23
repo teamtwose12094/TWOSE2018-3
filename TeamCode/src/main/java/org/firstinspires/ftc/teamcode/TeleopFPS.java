@@ -93,17 +93,17 @@ public class TeleopFPS extends LinearOpMode {
 
             // Use gamepad Y & A raise and lower the arm
             if (gamepad1.a) {
-                robot.armMotor.setPower(0.7);
+//                robot.armMotor.setPower(0.7);
 
                 //armPosition += ARM_SPEED;
             } else if (gamepad1.y) {
-                robot.armMotor.setPower(-0.7);
+//                robot.armMotor.setPower(-0.7);
 
                 //armPosition -= ARM_SPEED;
 
                 // Use gamepad X & B to open and close the claw
             } else {
-                robot.armMotor.setPower(0);
+//                robot.armMotor.setPower(0);
             }
             if (gamepad1.x) {
                 //colourStickPosition = COLOURSTICK_DOWN;

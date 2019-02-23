@@ -161,22 +161,22 @@ public abstract class Autonomous extends LinearOpMode {
 //    public void moveColorSensor (int position){
 //        robot.colourStick.setPosition(position);
 //    }
+//
+//                    void moveArm (int power, int time){
+// //                       robot.armMotor.setPower(power);
+//                        for (int i = 0; i <= time; i++) {
+//                            sleep(1);
+//                        }
+// //                       robot.armMotor.setPower(0);}
 
-                    void moveArm (int power, int time){
-                        robot.armMotor.setPower(power);
-                        for (int i = 0; i <= time; i++) {
-                            sleep(1);
-                        }
-                        robot.armMotor.setPower(0);}
 
-
-                    void slideArm ( int power, int time){
-                        robot.slideMotor.setPower(power);
-                        for (int i = 0; i <= time; i++) {
-                            sleep(1);
-                        }
-                        robot.slideMotor.setPower(0);
-                    }
+//                    void slideArm ( int power, int time){
+//                        robot.slideMotor.setPower(power);
+//                        for (int i = 0; i <= time; i++) {
+//                            sleep(1);
+//                        }
+//                        robot.slideMotor.setPower(0);
+//                    }
     void closed (int time, int position){
         //gives power to motors
         //robot.clawLeft.setPosition(0);

@@ -10,7 +10,21 @@ public class DriveTest extends Autonomous {
     public void runPath() {
 
         move(5,-0.9);
+
+        try {
+            wait(1000);
+        }
+        catch (Exception ex){
+        }
+
         pivot(30,-0.9);
+
+        try {
+            wait(1000);
+        }
+        catch (Exception ex){
+        }
+
         pivot(-30, -0.9);
 //        move(1, -0.5);
 //        move(1,  -0.75);

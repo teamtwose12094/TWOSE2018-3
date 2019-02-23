@@ -105,8 +105,7 @@ public class TeleopTank extends LinearOpMode {
             left = gamepad1.left_stick_y;
             right = gamepad1.right_stick_y;
             robot.leftMotor.setPower(-left);
-            robot.rightMotor.setPower(-
-                    right);
+            robot.rightMotor.setPower(-right);
 
             if (gamepad2.x){
                 robot.hookLeft.setPosition(LEFT_HOOK_CLOSE);
@@ -120,24 +119,28 @@ public class TeleopTank extends LinearOpMode {
 
 
             // Use gamepad Y & A raise and lower the arm
-            if ((gamepad1.a)|| (gamepad2.a)) {
-                robot.armMotor.setPower(-0.3);
+            if (gamepad2.a) {
+                robot.linSlideLeft.setPower(0.5);
+                robot.linSlideRight.setPower(0.5);
 
                 //armPosition += ARM_SPEED;
-            } else if ((gamepad1.y)|| (gamepad2.y)) {
-                robot.armMotor.setPower(0.3);
+            } else if (gamepad2.y) {
+                robot.linSlideRight.setPower(-0.5);
+                robot.linSlideLeft.setPower(-0.5);
                 //armPosition -= ARM_SPEED;
 
                 // Use gamepad X & B to open and close the claw
             } else {
-                robot.armMotor.setPower(0);
+//                robot.armMotor.setPower(0);
+                robot.linSlideRight.setPower(0);
+                robot.linSlideLeft.setPower(0);
             }
             if ((gamepad1.dpad_up) || (gamepad2.dpad_up))  {
-                robot.slideMotor.setPower(0.5);
+                //robot.slideMotor.setPower(0.5);
             } else if ((gamepad1.dpad_down) || (gamepad2.dpad_down))  {
-                robot.slideMotor.setPower(-0.5);
+                //robot.slideMotor.setPower(-0.5);
             } else {
-                robot.slideMotor.setPower(0);
+                //robot.slideMotor.setPower(0);
             }
             /*if ((gamepad1.b) || (gamepad2.b)) {
                     //robot.clawLeft.setPosition(OPEN_LEFT);

@@ -29,8 +29,10 @@ public class HardwareK9bot
     public DcMotor leftMotor   = null;
     public DcMotor rightMotor  = null;
     //public DcMotor fingerMotor = null;
-    public DcMotor armMotor    = null;
-    public DcMotor slideMotor = null;
+//    public DcMotor armMotor    = null;
+    //public DcMotor slideMotor = null;
+    public DcMotor linSlideLeft = null;
+    public DcMotor linSlideRight = null;
     //public Servo claw        = null;
     //public Servo lobster     = null;
     //public Servo clawLeft = null;
@@ -38,13 +40,13 @@ public class HardwareK9bot
     //public Servo colourStick = null;
     public Servo hookLeft = null;
     public Servo hookRight = null;
-    public final static double ARM_HOME = 0.2;
+//    public final static double ARM_HOME = 0.2;
     public final static double LEFT_CLAW_HOME = 0;
     public final static double RIGHT_CLAW_HOME = 1;
     public final static double COLOURSTICK_HOME = 0.9;
 
-    public final static double ARM_MIN_RANGE  = 0.20;
-    public final static double ARM_MAX_RANGE  = 0.90;
+//    public final static double ARM_MIN_RANGE  = 0.20;
+//    public final static double ARM_MAX_RANGE  = 0.90;
     public final static double CLAW_MIN_RANGE  = 0.20;
     public final static double CLAW_MAX_RANGE  = 0.7;
 
@@ -65,17 +67,22 @@ public class HardwareK9bot
         leftMotor   = hwMap.dcMotor.get("left_drive");
         rightMotor  = hwMap.dcMotor.get("right_drive");
         //fingerMotor = hwMap.dcMotor.get("chicken_fingers");
-        armMotor    = hwMap.dcMotor.get("arm");
-        slideMotor = hwMap.dcMotor.get("slide");
-        leftMotor.setDirection(DcMotor.Direction.REVERSE);
+//        armMotor    = hwMap.dcMotor.get("arm");
+        //slideMotor = hwMap.dcMotor.get("slide");
 
+        linSlideLeft = hwMap.dcMotor.get("linSlideLeft");
+        linSlideRight = hwMap.dcMotor.get("linSlideRight");
+
+        leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         //fingerMotor.setPower(0);
-        armMotor.setPower(0);
-        slideMotor.setPower(0);
+//        armMotor.setPower(0);
+        //slideMotor.setPower(0);
+        linSlideLeft.setPower(0);
+        linSlideRight.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
