@@ -50,7 +50,7 @@ public abstract class Autonomous extends LinearOpMode {
 
     protected void move(int distance, double power) {
 
-        power = -power;
+        //power = -power;
 
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -76,6 +76,8 @@ public abstract class Autonomous extends LinearOpMode {
         //turn the motors off
         robot.leftMotor.setPower(0);
         robot.rightMotor.setPower(0);
+
+        sleep(100); //give the robot the time to lose its momentum
     }
 
     protected void move(double distance, double power) {
@@ -102,6 +104,8 @@ public abstract class Autonomous extends LinearOpMode {
         //turn the motors off
         robot.leftMotor.setPower(0);
         robot.rightMotor.setPower(0);
+
+        sleep(100); //give the robot the time to lose its momentum
     }
 
 
@@ -136,6 +140,9 @@ public abstract class Autonomous extends LinearOpMode {
         //turn the motors off
         robot.leftMotor.setPower(0);
         robot.rightMotor.setPower(0);
+
+        sleep(100); //give the robot the time to lose its momentum
+
     }
 
     void spin (int duration, double power){
@@ -322,10 +329,10 @@ public abstract class Autonomous extends LinearOpMode {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
                         telemetry.update();
                         sleep(1000);
-                        if (updatedRecognitions.size() == 1) {
-                            return(0);
-                        }
-                        else if ((updatedRecognitions.size() == 2) && opModeIsActive()){
+//                        if (updatedRecognitions.size() == 1) {
+//                            return(0);
+//                        }
+                        /*else */if ((updatedRecognitions.size() == 2) && opModeIsActive()){
                             int goldMineralX = -1;
                             int silverMineral1X = -1;
                             int silverMineral2X = -1;

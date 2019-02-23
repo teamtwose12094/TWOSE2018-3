@@ -13,16 +13,24 @@ public class DriveTest extends Autonomous {
 
         try {
             wait(1000);
+            telemetry.addData("Wait", "1");
+            telemetry.update();
         }
         catch (Exception ex){
+            telemetry.addData("Failed Wait", "1");
+            telemetry.update();
         }
 
         pivot(30,-0.9);
 
         try {
             wait(1000);
+            telemetry.addData("Wait", "2");
+            telemetry.update();
         }
         catch (Exception ex){
+            telemetry.addData("Failed Wait", "2");
+            telemetry.update();
         }
 
         pivot(-30, -0.9);
