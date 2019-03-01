@@ -9,7 +9,8 @@ public class markerTest extends Autonomous {
     protected void runPath() {
 
         markerKnock(false);
-        markerKnock(true);
+        //sleep(100);
+        //markerKnock(true);
 
     }
 }
