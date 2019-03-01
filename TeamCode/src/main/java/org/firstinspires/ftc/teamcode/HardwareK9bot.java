@@ -40,6 +40,7 @@ public class HardwareK9bot
     //public Servo colourStick = null;
     public Servo hookLeft = null;
     public Servo hookRight = null;
+    public Servo markerStick = null;
 //    public final static double ARM_HOME = 0.2;
     public final static double LEFT_CLAW_HOME = 0;
     public final static double RIGHT_CLAW_HOME = 1;
@@ -97,6 +98,7 @@ public class HardwareK9bot
         //clawRight = hwMap.servo.get("clawRight");
         hookLeft = hwMap.servo.get("hookLeft");
         hookRight = hwMap.servo.get("hookRight");
+        markerStick = hwMap.servo.get("marker_stick");
 
 
         //clawLeft.setPosition(LEFT_CLAW_HOME);
