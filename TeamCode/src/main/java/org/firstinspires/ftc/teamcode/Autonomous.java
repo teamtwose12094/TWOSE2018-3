@@ -48,42 +48,45 @@ public abstract class Autonomous extends LinearOpMode {
 
     abstract protected void runPath();
 
-    protected void move(int distance, double power) {
-
-        //power = -power;
-
-        robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-
-        //gives power to motors
-        robot.leftMotor.setPower(power);
-        robot.rightMotor.setPower(power);
-
-        idle();
-
-        robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        //keep going until distance is met
-        while( (Math.abs(robot.rightMotor.getCurrentPosition()) < distance * TICKS_PER_INCH) && opModeIsActive() ){
-
-            telemetry.addData("Position: ", robot.rightMotor.getCurrentPosition());
-            telemetry.addData("Goal", distance * TICKS_PER_INCH);
-            telemetry.update();
-            idle();
-        }
-        //turn the motors off
-        robot.leftMotor.setPower(0);
-        robot.rightMotor.setPower(0);
-
-        sleep(100); //give the robot the time to lose its momentum
-    }
+//    protected void move(int distance, double power) {
+//
+//        //power = -power;
+//
+//        //distance = distance * (2 / 3);
+//
+//        robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//
+//
+//        //gives power to motors
+//        robot.leftMotor.setPower(power);
+//        robot.rightMotor.setPower(power);
+//
+//        idle();
+//
+//        robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//
+//        //keep going until distance is met
+//        while( (Math.abs(robot.rightMotor.getCurrentPosition()) < distance * TICKS_PER_INCH) && opModeIsActive() ){
+//
+//            telemetry.addData("Position: ", robot.rightMotor.getCurrentPosition());
+//            telemetry.addData("Goal", distance * TICKS_PER_INCH);
+//            telemetry.update();
+//            idle();
+//        }
+//        //turn the motors off
+//        robot.leftMotor.setPower(0);
+//        robot.rightMotor.setPower(0);
+//
+//        sleep(100); //give the robot the time to lose its momentum
+//    }
 
     protected void move(double distance, double power) {
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        distance = distance * 0.611111111; //used to be 0.55555 (5/9)
 
         //gives power to motors
         robot.leftMotor.setPower(2*power);
@@ -147,7 +150,7 @@ public abstract class Autonomous extends LinearOpMode {
         //robot.markerStick.setPosition(0);
 
         if (isReversed == false){
-            robot.markerStick.setPosition(-0.5);
+            robot.markerStick.setPosition(0.5);
         }
         else{
             robot.markerStick.setPosition(0);

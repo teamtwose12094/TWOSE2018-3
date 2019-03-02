@@ -13,23 +13,20 @@ public class RedCrater extends Autonomous {
         int orientation = getOrientation();
 
        if (orientation == 1){
-           move(5, 0.7);
             pivot(40, 0.7);
-            move(15, 0.7);
-            move(15, -0.7);
+            move(25, 0.7);
+            move(25, -0.7);
             pivot(36, -0.7); //the motors are seemingly not perfectly symmetrical
         }
         else if (orientation == 2){
-            move (5, 0.7);
-            move(15, 0.7);
-            move (15, -0.7);
+            move(22, 0.7);
+            move (22, -0.7);
         }
         else if (orientation == 3) {
-           move(5, 0.7);
-           pivot(40, -0.7);
-           move(15, 0.7);
-           move(15, -0.7);
-           pivot(45, 0.7);
+           pivot(35, -0.7);
+           move(25, 0.7);
+           move(25, -0.7);
+           pivot(43, 0.7);
 //            pivot(30, -0.7);
 //            move(20, 0.7);
 //            pivot(30, 0.7);
