@@ -120,13 +120,13 @@ public class TeleopTank extends LinearOpMode {
 
             // Use gamepad Y & A raise and lower the arm
             if (gamepad2.a) {
-                robot.linSlideLeft.setPower(0.5);
-                robot.linSlideRight.setPower(0.5);
+                robot.linSlideLeft.setPower(-0.5);
+                robot.linSlideRight.setPower(-0.5);
 
                 //armPosition += ARM_SPEED;
             } else if (gamepad2.y) {
-                robot.linSlideRight.setPower(-0.5);
-                robot.linSlideLeft.setPower(-0.5);
+                robot.linSlideRight.setPower(0.5);
+                robot.linSlideLeft.setPower(0.5);
                 //armPosition -= ARM_SPEED;
 
                 // Use gamepad X & B to open and close the claw

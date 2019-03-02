@@ -145,23 +145,23 @@ public abstract class Autonomous extends LinearOpMode {
 
     }
 
-    void markerKnock (boolean isReversed){
+    void markerKnock (/*boolean isReversed*/){
 
         //robot.markerStick.setPosition(0);
 
-        if (isReversed == false){
-            robot.markerStick.setPosition(0.5);
-        }
-        else{
-            robot.markerStick.setPosition(0);
-        }
+        //if (isReversed == false){
+            robot.markerStick.setPosition(1);
+        //}
+        //else{
+            //robot.markerStick.setPosition(1);
+        //}
 
     }
 
     void detach(){
 
-        robot.linSlideLeft.setPower(-0.5);
-        robot.linSlideRight.setPower(-0.5);
+        robot.linSlideLeft.setPower(0.5);
+        robot.linSlideRight.setPower(0.5);
 
         robot.linSlideLeft.setTargetPosition(5);
         robot.linSlideRight.setTargetPosition(5);

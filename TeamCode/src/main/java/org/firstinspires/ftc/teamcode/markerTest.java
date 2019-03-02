@@ -8,7 +8,7 @@ public class markerTest extends Autonomous {
     @Override
     protected void runPath() {
 
-        markerKnock(false);
+        markerKnock();
         //sleep(100);
         //markerKnock(true);
 
