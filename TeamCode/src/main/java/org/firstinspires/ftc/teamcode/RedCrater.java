@@ -14,26 +14,30 @@ public class RedCrater extends Autonomous {
 
        if (orientation == 1){
             pivot(40, 0.7);
-            move(25, 0.7);
-            move(25, -0.7);
-            pivot(36, -0.7); //the motors are seemingly not perfectly symmetrical
+            move(10, 0.7);
+            pivot(150, -0.7); //the motors are seemingly not perfectly symmetrical
+            move(122, 0.7);
+            pivot(110, -0.7);
         }
         else if (orientation == 2){
-            move(22, 0.7);
-            move (22, -0.7);
+            move(9, 0.7);
+            pivot(115, -0.7);
+            move (109, 0.7);
+            pivot(110, -0.7);
         }
         else if (orientation == 3) {
-           pivot(35, -0.7);
-           move(25, 0.7);
-           move(25, -0.7);
-           pivot(43, 0.7);
+           pivot(45, -0.7);
+           move(10, 0.7);
+           pivot(85, -0.7);
+           move(97, 0.7);
+           pivot(110, -0.7);
 //            pivot(30, -0.7);
 //            move(20, 0.7);
 //            pivot(30, 0.7);
 //            move (27, 0.7);
         }
         else {
-            move (27, 0.7);
+            move (82, 0.7);
         }
 //
 //        if(getOrientation()== 1){
