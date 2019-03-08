@@ -93,9 +93,12 @@ public class TeleopTank extends LinearOpMode {
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Hello human,", "it is I, the FRENCHIEST FRY");    //
+        telemetry.addData("left slider position", robot.linSlideLeft.getCurrentPosition());
+        telemetry.addData("right slider position", robot.linSlideRight.getCurrentPosition());
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
+
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
@@ -118,23 +121,32 @@ public class TeleopTank extends LinearOpMode {
 
 
 
-            // Use gamepad Y & A raise and lower the arm
-            if (gamepad2.a) {
+            // Use gamepad1 Y & A raise and lower the robot
+            if ((gamepad1.a) && (robot.linSlideLeft.getCurrentPosition() <= 5590)) {
                 robot.linSlideLeft.setPower(-0.5);
                 robot.linSlideRight.setPower(-0.5);
 
                 //armPosition += ARM_SPEED;
-            } else if (gamepad2.y) {
+            } else if ((gamepad1.y) && (robot.linSlideLeft.getCurrentPosition() >= -145)) {
                 robot.linSlideRight.setPower(0.5);
                 robot.linSlideLeft.setPower(0.5);
                 //armPosition -= ARM_SPEED;
-
                 // Use gamepad X & B to open and close the claw
             } else {
 //                robot.armMotor.setPower(0);
                 robot.linSlideRight.setPower(0);
                 robot.linSlideLeft.setPower(0);
+                telemetry.update();
             }
+
+            if (robot.linSlideLeft.getCurrentPosition() >= 5590 || robot.linSlideLeft.getCurrentPosition() <= -145){
+
+                robot.linSlideLeft.setPower(0);
+                robot.linSlideRight.setPower(0);
+                telemetry.update();
+
+            }
+
             if ((gamepad1.dpad_up) || (gamepad2.dpad_up))  {
                 //robot.slideMotor.setPower(0.5);
             } else if ((gamepad1.dpad_down) || (gamepad2.dpad_down))  {
@@ -154,7 +166,6 @@ public class TeleopTank extends LinearOpMode {
                     robot.clawLeft.setPosition(RELIC_CLOSE_LEFT);
                     robot.clawRight.setPosition(RELIC_CLOSE_RIGHT);}
             */
-            }
             if ((gamepad1.left_bumper) || (gamepad2.left_bumper)) {
                 if (relicMode == false){
                     relicMode = true;}
@@ -173,6 +184,6 @@ public class TeleopTank extends LinearOpMode {
 
 
         }
-    }
+    }}
 
 
