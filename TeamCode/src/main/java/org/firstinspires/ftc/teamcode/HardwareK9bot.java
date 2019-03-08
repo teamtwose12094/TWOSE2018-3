@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -100,6 +101,8 @@ public class HardwareK9bot
         hookRight = hwMap.servo.get("hookRight");
         markerStick = hwMap.servo.get("marker_stick");
 
+
+        //markerStick.setDirection(Servo.Direction.REVERSE);
 
         //clawLeft.setPosition(LEFT_CLAW_HOME);
         //clawRight.setPosition(RIGHT_CLAW_HOME);

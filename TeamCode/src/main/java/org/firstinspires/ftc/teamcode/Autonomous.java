@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -150,10 +152,25 @@ public abstract class Autonomous extends LinearOpMode {
         //robot.markerStick.setPosition(0);
 
         //if (isReversed == false){
+
+            boolean flag = false;
+
+            //robot.markerStick.setDirection(Servo.Direction.FORWARD);
+            //robot.markerStick.scaleRange(0,1);
             robot.markerStick.setPosition(1);
+//            while (flag){
+            //sleep(2000);
+//
+            try{Thread.sleep(2000);}
+            catch(Exception e){
+                telemetry.addData("wait", "failed");
+                //sleep(5000);
+            }
+
+            //robot.markerStick.setPosition(1);
         //}
         //else{
-            //robot.markerStick.setPosition(1);
+            robot.markerStick.setPosition(0);
         //}
 
     }
