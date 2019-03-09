@@ -122,14 +122,27 @@ public class TeleopTank extends LinearOpMode {
 
 
             // Use gamepad1 Y & A raise and lower the robot
-            if ((gamepad1.a) && (robot.linSlideLeft.getCurrentPosition() <= 5590)) {
+            //DOWN
+            if ((gamepad1.a) && (robot.linSlideLeft.getCurrentPosition() >= 45)) {
                 robot.linSlideLeft.setPower(-0.5);
                 robot.linSlideRight.setPower(-0.5);
+//                while (robot.linSlideLeft.getCurrentPosition() <= 6000){
+//                }
+//                robot.linSlideRight.setPower(0);
+//                robot.linSlideLeft.setPower(0);
 
                 //armPosition += ARM_SPEED;
-            } else if ((gamepad1.y) && (robot.linSlideLeft.getCurrentPosition() >= -145)) {
+                //UP
+            } else if ((gamepad1.y) && (robot.linSlideLeft.getCurrentPosition() <= 5340)) {
                 robot.linSlideRight.setPower(0.5);
                 robot.linSlideLeft.setPower(0.5);
+
+//                while (robot.linSlideLeft.getCurrentPosition() >= 45){
+//
+//                }
+//                robot.linSlideRight.setPower(0);
+//                robot.linSlideLeft.setPower(0);
+
                 //armPosition -= ARM_SPEED;
                 // Use gamepad X & B to open and close the claw
             } else {
@@ -139,7 +152,7 @@ public class TeleopTank extends LinearOpMode {
                 telemetry.update();
             }
 
-            if (robot.linSlideLeft.getCurrentPosition() >= 5590 || robot.linSlideLeft.getCurrentPosition() <= -145){
+            if (robot.linSlideLeft.getCurrentPosition() >= 5340 || robot.linSlideLeft.getCurrentPosition() <= 45){
 
                 robot.linSlideLeft.setPower(0);
                 robot.linSlideRight.setPower(0);

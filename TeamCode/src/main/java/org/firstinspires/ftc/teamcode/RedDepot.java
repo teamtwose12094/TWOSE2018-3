@@ -13,19 +13,18 @@ public class RedDepot extends Autonomous {
         if (orientation == 1){
             move(5, 0.7);
             pivot(40, 0.7);
-            move(15, 0.7);
+            move(20, 0.7);
             pivot(50,-0.7);
             move(20, 0.7);
 
         }
         else if (orientation == 2){
-            move (5, 0.7);
-            move(30, 0.7);
+            move(45, 0.7);
         }
         else if (orientation == 3) {
             move(5, 0.7);
             pivot(40, -0.7);
-            move(15, 0.7);
+            move(20, 0.7);
             pivot(50,0.7);
             move(20, 0.7);
 //            pivot(30, -0.7);

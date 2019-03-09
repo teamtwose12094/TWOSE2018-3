@@ -180,18 +180,32 @@ public abstract class Autonomous extends LinearOpMode {
         robot.linSlideLeft.setPower(0.5);
         robot.linSlideRight.setPower(0.5);
 
-        robot.linSlideLeft.setTargetPosition(5);
-        robot.linSlideRight.setTargetPosition(5);
+//        robot.linSlideLeft.setTargetPosition(5);
+//        robot.linSlideRight.setTargetPosition(5);
 
-        while (robot.linSlideLeft.getCurrentPosition() < robot.linSlideLeft.getTargetPosition()){
+        while (robot.linSlideLeft.getCurrentPosition() < 5340){
         }
 
         robot.linSlideLeft.setPower(0);
         robot.linSlideRight.setPower(0);
 
-        pivot(10, 0.5);
-        move(5, 0.5);
-        pivot(10, -0.5);
+        sleep(1000);
+
+        robot.linSlideLeft.setPower(-0.5);
+        robot.linSlideRight.setPower(-0.5);
+
+//        robot.linSlideLeft.setTargetPosition(5);
+//        robot.linSlideRight.setTargetPosition(5);
+
+        while (robot.linSlideLeft.getCurrentPosition() > 45){
+        }
+
+        robot.linSlideLeft.setPower(0);
+        robot.linSlideRight.setPower(0);
+
+//        pivot(10, 0.5);
+//        move(5, 0.5);
+//        pivot(10, -0.5);
 
     }
 
