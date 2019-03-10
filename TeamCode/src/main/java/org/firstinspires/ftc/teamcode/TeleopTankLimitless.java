@@ -34,11 +34,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.robotcontroller.external.samples.SensorAdafruitRGB;
 
 /**
  * This OpMode uses the common HardwareK9bot class to define the devices on the robot.
@@ -57,8 +52,8 @@ import org.firstinspires.ftc.robotcontroller.external.samples.SensorAdafruitRGB;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Teleop Tank", group="K9bot")
-public class TeleopTank extends LinearOpMode {
+@TeleOp(name="Teleop Tank Limitless", group="K9bot")
+public class TeleopTankLimitless extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareK9bot robot = new HardwareK9bot();              // Use a K9's hardware
@@ -123,7 +118,7 @@ public class TeleopTank extends LinearOpMode {
 
             // Use gamepad1 Y & A raise and lower the robot
             //DOWN
-            if ((gamepad1.a) && (robot.linSlideRight.getCurrentPosition() <= -183)) {
+            if ((gamepad1.a)) {
                 robot.linSlideLeft.setPower(0.5);
                 robot.linSlideRight.setPower(0.5);
 //                while (robot.linSlideLeft.getCurrentPosition() <= 6000){
@@ -133,7 +128,7 @@ public class TeleopTank extends LinearOpMode {
 
                 //armPosition += ARM_SPEED;
                 //UP
-            } else if ((gamepad1.y) && (robot.linSlideRight.getCurrentPosition() >= -5987)) {
+            } else if ((gamepad1.y)) {
                 robot.linSlideRight.setPower(-0.5);
                 robot.linSlideLeft.setPower(-0.5);
 
@@ -175,14 +170,6 @@ public class TeleopTank extends LinearOpMode {
             }
             else {
                 robot.armSlide.setPower(0);
-            }
-
-            if (robot.linSlideRight.getCurrentPosition() >= -183 || robot.linSlideRight.getCurrentPosition() <= -5987){
-
-                robot.linSlideLeft.setPower(0);
-                robot.linSlideRight.setPower(0);
-                telemetry.update();
-
             }
 
             if ((gamepad1.dpad_up) || (gamepad2.dpad_up))  {

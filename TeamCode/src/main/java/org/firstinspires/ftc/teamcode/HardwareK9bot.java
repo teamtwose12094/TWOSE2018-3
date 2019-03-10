@@ -31,6 +31,7 @@ public class HardwareK9bot
     public DcMotor rightMotor  = null;
     //public DcMotor fingerMotor = null;
     public DcMotor armMotor    = null;
+    public DcMotor armSlide    = null;
     //public DcMotor slideMotor = null;
     public DcMotor linSlideLeft = null;
     public DcMotor linSlideRight = null;
@@ -69,7 +70,8 @@ public class HardwareK9bot
         leftMotor   = hwMap.dcMotor.get("left_drive");
         rightMotor  = hwMap.dcMotor.get("right_drive");
         //fingerMotor = hwMap.dcMotor.get("chicken_fingers");
-//        armMotor    = hwMap.dcMotor.get("arm");
+        armMotor    = hwMap.dcMotor.get("arm");
+        armSlide = hwMap.dcMotor.get("armSlide");
         //slideMotor = hwMap.dcMotor.get("slide");
 
         linSlideLeft = hwMap.dcMotor.get("linSlideLeft");

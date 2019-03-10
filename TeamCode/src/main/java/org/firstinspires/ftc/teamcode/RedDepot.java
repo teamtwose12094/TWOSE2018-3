@@ -1,4 +1,7 @@
 package org.firstinspires.ftc.teamcode;
+
+import android.text.method.MovementMethod;
+
 /**
  * Created by student on 10/26/2017.
  */
@@ -13,20 +16,39 @@ public class RedDepot extends Autonomous {
         if (orientation == 1){
             move(5, 0.7);
             pivot(40, 0.7);
-            move(20, 0.7);
-            pivot(50,-0.7);
-            move(20, 0.7);
+            move(25, 0.7);
+            pivot(70,-0.7);
+            move(25, 0.7);
+            markerKnock();
+            move(5, 0.7);
+            move(5, -0.7);
+            pivot(60, -0.7);
+            move(10, 0.7);
+            pivot(60, -0.7);
+            move(75, 0.7);
 
         }
         else if (orientation == 2){
-            move(45, 0.7);
+            move(50, 0.7);
+            markerKnock();
+            pivot(50, -0.7);
+            move(15, 0.7);
+            pivot(60, -0.7);
+            move(75, 0.7);
         }
         else if (orientation == 3) {
             move(5, 0.7);
             pivot(40, -0.7);
-            move(20, 0.7);
+            move(25, 0.7);
             pivot(50,0.7);
-            move(20, 0.7);
+            move(25, 0.7);
+            markerKnock();
+            move(10, -0.7);
+            pivot(120, -0.7);
+            move(10, 0.7);
+            pivot(60, -0.7);
+            move(75, 0.7);
+
 //            pivot(30, -0.7);
 //            move(20, 0.7);
 //            pivot(30, 0.7);
@@ -35,6 +57,8 @@ public class RedDepot extends Autonomous {
         else {
             move (27, 0.7);
         }
+
+
 //        move(10, -0.7);
 //        pivot(45,-0.7);
 //        move(30,-0.7);
