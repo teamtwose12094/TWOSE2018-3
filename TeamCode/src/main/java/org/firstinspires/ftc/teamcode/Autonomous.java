@@ -177,19 +177,8 @@ public abstract class Autonomous extends LinearOpMode {
 
     void detach(){
 
-        robot.linSlideLeft.setPower(0.5);
-        robot.linSlideRight.setPower(0.5);
-
-//        robot.linSlideLeft.setTargetPosition(5);
-//        robot.linSlideRight.setTargetPosition(5);
-
-        while (robot.linSlideLeft.getCurrentPosition() < 5340 && opModeIsActive()){
-        }
-
-        robot.linSlideLeft.setPower(0);
-        robot.linSlideRight.setPower(0);
-
-        sleep(1000);
+        final int MIN_VALUE = robot.linSlideRight.getCurrentPosition(); //used to be -183, the value at the lowest point
+        final int MAX_VALUE = robot.linSlideRight.getCurrentPosition() - 6000; //used to be -5987
 
         robot.linSlideLeft.setPower(-0.5);
         robot.linSlideRight.setPower(-0.5);
@@ -197,11 +186,37 @@ public abstract class Autonomous extends LinearOpMode {
 //        robot.linSlideLeft.setTargetPosition(5);
 //        robot.linSlideRight.setTargetPosition(5);
 
-        while (robot.linSlideLeft.getCurrentPosition() > 45 && opModeIsActive()){
+        while (robot.linSlideLeft.getCurrentPosition() >= MAX_VALUE && opModeIsActive()){
         }
 
         robot.linSlideLeft.setPower(0);
         robot.linSlideRight.setPower(0);
+
+        sleep(1000);
+
+        pivot(45, -0.7);
+
+        robot.linSlideLeft.setPower(0.5);
+        robot.linSlideRight.setPower(0.5);
+
+        while (robot.linSlideLeft.getCurrentPosition() <= MIN_VALUE && opModeIsActive()){
+        }
+
+        robot.linSlideRight.setPower(0);
+        robot.linSlideLeft.setPower(0);
+
+//        robot.linSlideLeft.setTargetPosition(5);
+//        robot.linSlideRight.setTargetPosition(5);
+
+//        while (robot.linSlideLeft.getCurrentPosition() > 45 && opModeIsActive()){
+//        }
+//
+//        robot.linSlideLeft.setPower(0);
+//        robot.linSlideRight.setPower(0);
+
+        pivot(45, 0.7);
+
+        move(5, 0.7);
 
 //        pivot(10, 0.5);
 //        move(5, 0.5);
@@ -244,7 +259,7 @@ public abstract class Autonomous extends LinearOpMode {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
                         telemetry.update();
                         sleep(1000);
-
+                        //while (opModeIsActive()) {
                             if (updatedRecognitions.size() == 1 || updatedRecognitions.size() == 0) {
                                 //return(0);
                             }
@@ -319,7 +334,7 @@ public abstract class Autonomous extends LinearOpMode {
                                     }
                                 }
                             }
-
+                        //}
                         telemetry.update();
                     }
                 }

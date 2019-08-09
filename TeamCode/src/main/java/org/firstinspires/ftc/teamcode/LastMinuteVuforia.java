@@ -12,22 +12,28 @@ public class LastMinuteVuforia extends Autonomous {
         int orientation = getOrientation();
 
         if (orientation == 1){
-            move (10, -0.7);
+            telemetry.addData("pos", "left");
+            telemetry.update();
         }
         else if (orientation == 2){
-            pivot(10, -0.7);
-            move (10, 0.7);
+            telemetry.addData("pos", "center");
+            telemetry.update();
         }
         else if (orientation == 3) {
-            pivot(20, -0.7);
-            move(10, 0.7);
+            telemetry.addData("pos", "right");
+            telemetry.update();
         }
-        else if (orientation == 10){
-            pivot(20, -0.7);
-            pivot (-20, 0.7);
+        else{
+            telemetry.addData("pos", "none");
+            telemetry.update();
+
         }
-        else {
-            pivot (360, 0.7);
-        }
+//        else if (orientation == 10){
+//            pivot(20, -0.7);
+//            pivot (-20, 0.7);
+//        }
+//        else {
+//            pivot (360, 0.7);
+//        }
     }
 }

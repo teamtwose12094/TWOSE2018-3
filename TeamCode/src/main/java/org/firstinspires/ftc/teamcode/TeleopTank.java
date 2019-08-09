@@ -78,6 +78,7 @@ public class TeleopTank extends LinearOpMode {
     final double LEFT_HOOK_OPEN = 1.0;
     final double RIGHT_HOOK_OPEN = 0.0;
     public boolean relicMode = false;
+
     //final double    CLAW_SPEED      = 0.01 ;                            // sets rate to move servo
     //final double    ARM_SPEED       = 0.01 ;                            // sets rate to move servo
 
@@ -123,7 +124,11 @@ public class TeleopTank extends LinearOpMode {
 
             // Use gamepad1 Y & A raise and lower the robot
             //DOWN
-            if ((gamepad1.a) && (robot.linSlideRight.getCurrentPosition() <= -183)) {
+
+            final int MIN_VALUE = robot.linSlideRight.getCurrentPosition(); //used to be -183, the value at the lowest point
+            final int MAX_VALUE = robot.linSlideRight.getCurrentPosition() - 5000; //used to be -5987
+
+            if ((gamepad1.a) && (robot.linSlideRight.getCurrentPosition() <= MIN_VALUE)) {
                 robot.linSlideLeft.setPower(0.5);
                 robot.linSlideRight.setPower(0.5);
 //                while (robot.linSlideLeft.getCurrentPosition() <= 6000){
@@ -133,7 +138,7 @@ public class TeleopTank extends LinearOpMode {
 
                 //armPosition += ARM_SPEED;
                 //UP
-            } else if ((gamepad1.y) && (robot.linSlideRight.getCurrentPosition() >= -5987)) {
+            } else if ((gamepad1.y) && (robot.linSlideRight.getCurrentPosition() >= MAX_VALUE)) {
                 robot.linSlideRight.setPower(-0.5);
                 robot.linSlideLeft.setPower(-0.5);
 
@@ -177,7 +182,7 @@ public class TeleopTank extends LinearOpMode {
                 robot.armSlide.setPower(0);
             }
 
-            if (robot.linSlideRight.getCurrentPosition() >= -183 || robot.linSlideRight.getCurrentPosition() <= -5987){
+            if (robot.linSlideRight.getCurrentPosition() >= MIN_VALUE || robot.linSlideRight.getCurrentPosition() <= MAX_VALUE){
 
                 robot.linSlideLeft.setPower(0);
                 robot.linSlideRight.setPower(0);
